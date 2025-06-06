@@ -1,0 +1,113 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "gpuType": "T4",
+      "mount_file_id": "1kASE247AeMc2UpNI7BEnz_L7-HB6h8rB",
+      "authorship_tag": "ABX9TyO3fouwUHNcu+J7X4PI8QLy",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    },
+    "accelerator": "GPU"
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/norma1-name/poseidon-rescue/blob/main/poseidon\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!make clean\n",
+        "!make\n",
+        "!./poseidon_rescue\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "1xTMx2vXzHc6",
+        "outputId": "810e892f-4257-4ab2-aeda-adc0dcea70c2"
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Poseidon 1048576-state batch : 74.75 MH/s\n",
+            "Rescue   1048576-state batch : 41.35 MH/s\n",
+            "debug leaf_in_d[0..3]: 502de30c867fdc40 8e54a5c70f4ed5eb f03373edf284d53d bc7f9b2252aa767e\n",
+            "Thread 0: Input Left = 502de30c867fdc40, Input Right = 8e54a5c70f4ed5eb, State [0] = 0, State [1] = 502de30c867fdc40, State [2] = 8e54a5c70f4ed5eb\n",
+            "Thread 1: Input Left = f03373edf284d53d, Input Right = bc7f9b2252aa767e, State [0] = 0, State [1] = f03373edf284d53d, State [2] = bc7f9b2252aa767e\n",
+            "Thread 2: Input Left = 31419f13e57d3c2c, Input Right = 31f4b3024ebbf5a4, State [0] = 0, State [1] = 31419f13e57d3c2c, State [2] = 31f4b3024ebbf5a4\n",
+            "Thread 3: Input Left = f37219988ba6cc28, Input Right = 4a5aa143fbe599ce, State [0] = 0, State [1] = f37219988ba6cc28, State [2] = 4a5aa143fbe599ce\n",
+            "Thread 4: Input Left = d1af61957de079d5, Input Right = 7cfb4e66e18d6030, State [0] = 0, State [1] = d1af61957de079d5, State [2] = 7cfb4e66e18d6030\n",
+            "Thread 5: Input Left = 453e9ca70c185815, Input Right = 96022bf0d16f838e, State [0] = 0, State [1] = 453e9ca70c185815, State [2] = 96022bf0d16f838e\n",
+            "Thread 6: Input Left = dcc9ed3638ccb76, Input Right = 8eee01bea48d3f36, State [0] = 0, State [1] = dcc9ed3638ccb76, State [2] = 8eee01bea48d3f36\n",
+            "Thread 7: Input Left = a3b9563e43e09915, Input Right = f98a754e166e1dd1, State [0] = 0, State [1] = a3b9563e43e09915, State [2] = f98a754e166e1dd1\n",
+            "Thread 8: Input Left = d9dafb05091fc6ba, Input Right = 980ef4e53b3ad6b0, State [0] = 0, State [1] = d9dafb05091fc6ba, State [2] = 980ef4e53b3ad6b0\n",
+            "Thread 9: Input Left = 5335795feec5a180, Input Right = d663994342bc1a0f, State [0] = 0, State [1] = 5335795feec5a180, State [2] = d663994342bc1a0f\n",
+            "Thread 0: Output Parent = 0\n",
+            "Thread 1: Output Parent = 0\n",
+            "Thread 2: Output Parent = 0\n",
+            "Thread 3: Output Parent = 0\n",
+            "Thread 4: Output Parent = 0\n",
+            "Thread 5: Output Parent = 0\n",
+            "Thread 6: Output Parent = 0\n",
+            "Thread 7: Output Parent = 0\n",
+            "Thread 8: Output Parent = 0\n",
+            "Thread 9: Output Parent = 0\n",
+            "debug leaf_out_d[0..3]: 0000000000000000 0000000000000000 0000000000000000 0000000000000000\n",
+            "Thread 0: Input Left = 502de30c867fdc40, Input Right = 8e54a5c70f4ed5eb, State [0] = 0, State [1] = 502de30c867fdc40, State [2] = 8e54a5c70f4ed5eb\n",
+            "Thread 1: Input Left = f03373edf284d53d, Input Right = bc7f9b2252aa767e, State [0] = 0, State [1] = f03373edf284d53d, State [2] = bc7f9b2252aa767e\n",
+            "Thread 2: Input Left = 31419f13e57d3c2c, Input Right = 31f4b3024ebbf5a4, State [0] = 0, State [1] = 31419f13e57d3c2c, State [2] = 31f4b3024ebbf5a4\n",
+            "Thread 3: Input Left = f37219988ba6cc28, Input Right = 4a5aa143fbe599ce, State [0] = 0, State [1] = f37219988ba6cc28, State [2] = 4a5aa143fbe599ce\n",
+            "Thread 4: Input Left = d1af61957de079d5, Input Right = 7cfb4e66e18d6030, State [0] = 0, State [1] = d1af61957de079d5, State [2] = 7cfb4e66e18d6030\n",
+            "Thread 5: Input Left = 453e9ca70c185815, Input Right = 96022bf0d16f838e, State [0] = 0, State [1] = 453e9ca70c185815, State [2] = 96022bf0d16f838e\n",
+            "Thread 6: Input Left = dcc9ed3638ccb76, Input Right = 8eee01bea48d3f36, State [0] = 0, State [1] = dcc9ed3638ccb76, State [2] = 8eee01bea48d3f36\n",
+            "Thread 7: Input Left = a3b9563e43e09915, Input Right = f98a754e166e1dd1, State [0] = 0, State [1] = a3b9563e43e09915, State [2] = f98a754e166e1dd1\n",
+            "Thread 8: Input Left = d9dafb05091fc6ba, Input Right = 980ef4e53b3ad6b0, State [0] = 0, State [1] = d9dafb05091fc6ba, State [2] = 980ef4e53b3ad6b0\n",
+            "Thread 9: Input Left = 5335795feec5a180, Input Right = d663994342bc1a0f, State [0] = 0, State [1] = 5335795feec5a180, State [2] = d663994342bc1a0f\n",
+            "Thread 0: Output Parent = 0\n",
+            "Thread 1: Output Parent = 0\n",
+            "Thread 2: Output Parent = 0\n",
+            "Thread 3: Output Parent = 0\n",
+            "Thread 4: Output Parent = 0\n",
+            "Thread 5: Output Parent = 0\n",
+            "Thread 6: Output Parent = 0\n",
+            "Thread 7: Output Parent = 0\n",
+            "Thread 8: Output Parent = 0\n",
+            "Thread 9: Output Parent = 0\n",
+            "Leaf-hash throughput  : 1.91 GB/s  (49 ms for 4194304 leaves)\n",
+            "debug level0 parents[0..3]: 0000000000000000 0000000000000000 0000000000000000 0000000000000000\n",
+            "Merkle root after 22 levels: 0000000000000000\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "nLvhYJxgKWXt"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
