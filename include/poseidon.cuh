@@ -1,33 +1,34 @@
 #pragma once
 #include "field64.cuh"
+#include "hash_constants.cuh"
+#include "poseidon_rc.hpp"
+#include "poseidon_mds.hpp"
 
-/* ---- round constants & MDS matrix in constant memory ---- */
-__constant__ uint64_t POSEIDON_RC[64];   // adjust to spec
-__constant__ uint64_t POSEIDON_M[9];     // 3×3 matrix, row-major
+/* Select table pointers */
+#ifdef __CUDA_ARCH__
+    #define RC64(i) POSEIDON_RC[i]
+    #define M9(i)  POSEIDON_M [i]
+#else
+    #define RC64(i) poseidon_rc[i]
+    #define M9(i)  poseidon_mds[i]
+#endif
 
-template<int N_ROUNDS>
-__device__ void poseidon_permute(uint64_t state[3])
-{
+HD void poseidon_permute(uint64_t s[3]) {
     #pragma unroll
-    for (int r = 0; r < N_ROUNDS; ++r)
-    {
-        state[0] = add_mod(state[0], POSEIDON_RC[r]);   // ARK
+    for (int r = 0; r < 64; ++r) {
+        s[0] = add_mod(s[0], RC64(r));
 
-        /* S-box (full round, power 5) */
-        state[0] = pow5(state[0]);
-        state[1] = pow5(state[1]);
-        state[2] = pow5(state[2]);
+        s[0] = pow5(s[0]);  s[1] = pow5(s[1]);  s[2] = pow5(s[2]);
 
-        /* MDS mix */
-        uint64_t y0 = add_mod(mul_mod(POSEIDON_M[0], state[0]),
-                    add_mod(mul_mod(POSEIDON_M[1], state[1]),
-                             mul_mod(POSEIDON_M[2], state[2])));
-        uint64_t y1 = add_mod(mul_mod(POSEIDON_M[3], state[0]),
-                    add_mod(mul_mod(POSEIDON_M[4], state[1]),
-                             mul_mod(POSEIDON_M[5], state[2])));
-        uint64_t y2 = add_mod(mul_mod(POSEIDON_M[6], state[0]),
-                    add_mod(mul_mod(POSEIDON_M[7], state[1]),
-                             mul_mod(POSEIDON_M[8], state[2])));
-        state[0] = y0;  state[1] = y1;  state[2] = y2;
+        uint64_t y0 = add_mod(mul_mod(M9(0),s[0]),
+                     add_mod(mul_mod(M9(1),s[1]),
+                              mul_mod(M9(2),s[2])));
+        uint64_t y1 = add_mod(mul_mod(M9(3),s[0]),
+                     add_mod(mul_mod(M9(4),s[1]),
+                              mul_mod(M9(5),s[2])));
+        uint64_t y2 = add_mod(mul_mod(M9(6),s[0]),
+                     add_mod(mul_mod(M9(7),s[1]),
+                              mul_mod(M9(8),s[2])));
+        s[0]=y0; s[1]=y1; s[2]=y2;
     }
 }
